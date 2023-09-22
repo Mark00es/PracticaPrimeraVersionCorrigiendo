@@ -1122,6 +1122,7 @@ window.onload = function(){
                                 action = 30 + Math.random() * 3;
                                 break;
                             case "o":
+                                // Uso de Math.random() considerado seguro en este contexto.
                                 action = 15 + Math.random() * 3;
                                 break;
                             default:
