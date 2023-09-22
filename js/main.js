@@ -979,16 +979,15 @@ window.onload = function(){
         if(scopes.length) return scopes;
     }
 
-    var myTurn = true;
+    let myTurn = true;
 
     function check(){
         if(myTurn){
-            var n = Number(this.classList[1].slice(1));
-            var target = values[n];
+            let n = Number(this.classList[1].slice(1));
 
-            var scopes = checkBlack(n,values) || [];
+            let scopes = checkBlack(n,values) || [];
 
-            var x = n;
+            let x = n;
 
             if(!moveable){
                 if(scopes.length > 0){
