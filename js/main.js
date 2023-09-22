@@ -19,7 +19,7 @@ window.onload = function(){
         container.appendChild(square);
     }
 
-    var fonts = {
+    let fonts = {
         'k' : '&#9818;',
         'q' : '&#9819;',
         'r' : '&#9820',
@@ -35,15 +35,15 @@ window.onload = function(){
 
     }
 
-    var values = ['r','n','b','q','k','b','n','r','p','p','p','p','p','p','p','p',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,'o','o','o','o','o','o','o','o','t','m','v','w','l','v','m','t'];
-    var ck = false;
-    var cr1 = false;
-    var cr2 = false;
-    var cl;
+    let values = ['r','n','b','q','k','b','n','r','p','p','p','p','p','p','p','p',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,'o','o','o','o','o','o','o','o','t','m','v','w','l','v','m','t'];
+    let ck = false;
+    let cr1 = false;
+    let cr2 = false;
+    let cl;
 
-    var sqs = document.getElementsByClassName("square");
+    let sqs = document.getElementsByClassName("square");
 
-    for(var n = 0; n < 64; n++){
+    for(let n = 0; n < 64; n++){
         if(values[n] !== 0){
            sqs[n].innerHTML = fonts[values[n]];
         }
