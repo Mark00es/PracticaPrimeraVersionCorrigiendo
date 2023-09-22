@@ -62,15 +62,15 @@ window.onload = function(){
 
     updateSquarecolor();
 
-    var moveable = false;
-    var moveTarget = "";
-    var moveScopes = [];
+    let moveable = false;
+    let moveTarget = "";
+    let moveScopes = [];
 
 
     function checkBlack(n,values){
-        var target = values[n];
-        var scopes = [];
-        var x = n;
+        let target = values[n];
+        let scopes = [];
+        let x = n;
 
         if(target === "o"){
             x -= 8;
