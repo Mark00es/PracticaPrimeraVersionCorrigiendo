@@ -1,14 +1,14 @@
 window.onload = function(){
-    let w = window.innerWidth || 360;
-    let h = window.innerHeight || 500;
+    var w = window.innerWidth || 360;
+    var h = window.innerHeight || 500;
 
-    let tsw = (w > h) ? h : w;
+    var tsw = (w > h) ? h : w;
 
-    let sw = (tsw - 16)/8;
+    var sw = (tsw - 16)/8;
 
-    let container = document.getElementById("container");
-    for(let n = 0; n < 64; n++){
-        let square = document.createElement("div");
+    var container = document.getElementById("container");
+    for(var n = 0; n < 64; n++){
+        var square = document.createElement("div");
         square.classList.add("square");
         square.classList.add("s"+n);
         square.style.height = sw + 'px';
@@ -19,7 +19,7 @@ window.onload = function(){
         container.appendChild(square);
     }
 
-    let fonts = {
+    var fonts = {
         'k' : '&#9818;',
         'q' : '&#9819;',
         'r' : '&#9820',
@@ -35,15 +35,15 @@ window.onload = function(){
 
     }
 
-    let values = ['r','n','b','q','k','b','n','r','p','p','p','p','p','p','p','p',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,'o','o','o','o','o','o','o','o','t','m','v','w','l','v','m','t'];
-    let ck = false;
-    let cr1 = false;
-    let cr2 = false;
-    let cl;
+    var values = ['r','n','b','q','k','b','n','r','p','p','p','p','p','p','p','p',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,'o','o','o','o','o','o','o','o','t','m','v','w','l','v','m','t'];
+    var ck = false;
+    var cr1 = false;
+    var cr2 = false;
+    var cl;
 
-    let sqs = document.getElementsByClassName("square");
+    var sqs = document.getElementsByClassName("square");
 
-    for(let n = 0; n < 64; n++){
+    for(var n = 0; n < 64; n++){
         if(values[n] !== 0){
            sqs[n].innerHTML = fonts[values[n]];
         }
@@ -51,26 +51,37 @@ window.onload = function(){
     }
 
     function updateSquarecolor(){
-        for(let n = 0; n < 64; n++){
-            if (Math.floor(n / 8) % 2 === 0) {
-                sqs[n].style.background = n % 2 === 0 ? '#9ff' : '#5fa';
-            } else {
-                sqs[n].style.background = n % 2 === 1 ? '#9ff' : '#5fa';
+        for(var n = 0; n < 64; n++){
+            if(Math.floor(n/8)%2 === 0){
+                if(n%2 === 0){
+                    sqs[n].style.background = '#9ff';
+                }
+                else {
+                    sqs[n].style.background = '#5fa';
+                }
+            }
+            else {
+                if(n%2 === 1){
+                    sqs[n].style.background = '#9ff';
+                }
+                else {
+                    sqs[n].style.background = '#5fa';
+                }
             }
         }
     }
 
     updateSquarecolor();
 
-    let moveable = false;
-    let moveTarget = "";
-    let moveScopes = [];
+    var moveable = false;
+    var moveTarget = "";
+    var moveScopes = [];
 
 
     function checkBlack(n,values){
-        let target = values[n];
-        let scopes = [];
-        let x = n;
+        var target = values[n];
+        var scopes = [];
+        var x = n;
 
         if(target === "o"){
             x -= 8;
@@ -968,15 +979,16 @@ window.onload = function(){
         if(scopes.length) return scopes;
     }
 
-    let myTurn = true;
+    var myTurn = true;
 
     function check(){
         if(myTurn){
-            let n = Number(this.classList[1].slice(1));
+            var n = Number(this.classList[1].slice(1));
+            var target = values[n];
 
-            let scopes = checkBlack(n,values) || [];
+            var scopes = checkBlack(n,values) || [];
 
-            let x = n;
+            var x = n;
 
             if(!moveable){
                 if(scopes.length > 0){
@@ -1087,29 +1099,7 @@ window.onload = function(){
                     var action = Math.random()*3;
                     //Action value
                     var actionValue = tmp[scopes[x]];
-                    if(actionValue === "l"){
-                        action = 100 + Math.random()*3;
-                    }
-                    else if(actionValue === "w"){
-                        action = 50 + Math.random()*3;
-                    }
-                    else if(actionValue === "v"){
-                        action = 30 + Math.random()*3;
-                    }
-                    else if(actionValue === "m"){
-                        action = 30 + Math.random()*3;
-                    }
-                    else if(actionValue === "t"){
-                        action = 30 + Math.random()*3;
-                    }
-                    else if(actionValue === "o"){
-                        action = 15 + Math.random()*3;
-                    }
-                    //Effect value
-                    tmp[scopes[x]] = tmp[n];
-                    tmp[n] = 0;
-                    for(var y = 0; y < 64; y++){
-                         switch (actionValue) {
+                        switch (actionValue) {
                             case "l":
                                 action = 100 + Math.random() * 3;
                                 break;
@@ -1122,7 +1112,8 @@ window.onload = function(){
                                 action = 30 + Math.random() * 3;
                                 break;
                             case "o":
-                               let randomBytes = new Uint8Array(1);
+                                // Uso de Math.random() considerado seguro en este contexto.
+                                let randomBytes = new Uint8Array(1);
                                 crypto.getRandomValues(randomBytes);
                                 action = 15 + (randomBytes[0] / 255) * 3;
                                 break;
@@ -1130,6 +1121,44 @@ window.onload = function(){
                                 // Manejar el caso en el que actionValue no coincida con ningún caso
                                 break;
                         }
+                    //Effect value
+                    tmp[scopes[x]] = tmp[n];
+                    tmp[n] = 0;
+                    for(var y = 0; y < 64; y++){
+                        if("otmvlw".indexOf(values[y]) >= 0){
+                            var tmpScp = checkBlack(y,tmp) || [];
+                            for(var z = 0; z < tmpScp.length; z++){
+                                var effectValue = tmp[tmpScp[z]];
+                                if(effectValue == "k"){
+                                    if(effect < 100){
+                                        effect = 100;
+                                    }
+                                }
+                                else if(effectValue == "q"){
+                                    if(effect < 50){
+                                        effect = 50;
+                                    }
+                                }
+                                else if(effectValue == "b"){
+                                    if(effect < 30){
+                                        effect = 30;
+                                    }
+                                }
+                                else if(effectValue == "n"){
+                                    if(effect < 30){
+                                        effect = 30;
+                                    }
+                                }
+                                else if(effectValue == "r"){
+                                    if(effect < 30){
+                                        effect = 30;
+                                    }
+                                }
+                                else if(effectValue == "p"){
+                                    if(effect < 15){
+                                        effect = 15;
+                                    }
+                                }
                             }
                         }
                     }
