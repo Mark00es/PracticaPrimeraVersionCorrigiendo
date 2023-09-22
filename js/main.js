@@ -1118,36 +1118,34 @@ window.onload = function(){
                             var tmpScp = checkBlack(y,tmp) || [];
                             for(var z = 0; z < tmpScp.length; z++){
                                 var effectValue = tmp[tmpScp[z]];
-                                if(effectValue == "k"){
-                                    if(effect < 100){
-                                        effect = 100;
-                                    }
+                                switch (effectValue) {
+                                    case "k":
+                                        if (effect < 100) {
+                                            effect = 100;
+                                        }
+                                        break;
+                                    case "q":
+                                        if (effect < 50) {
+                                            effect = 50;
+                                        }
+                                        break;
+                                    case "b":
+                                    case "n":
+                                    case "r":
+                                        if (effect < 30) {
+                                            effect = 30;
+                                        }
+                                        break;
+                                    case "p":
+                                        if (effect < 15) {
+                                            effect = 15;
+                                        }
+                                        break;
+                                    default:
+                                        // Manejar el caso en el que effectValue no coincida con ningún caso
+                                        break;
                                 }
-                                else if(effectValue == "q"){
-                                    if(effect < 50){
-                                        effect = 50;
-                                    }
-                                }
-                                else if(effectValue == "b"){
-                                    if(effect < 30){
-                                        effect = 30;
-                                    }
-                                }
-                                else if(effectValue == "n"){
-                                    if(effect < 30){
-                                        effect = 30;
-                                    }
-                                }
-                                else if(effectValue == "r"){
-                                    if(effect < 30){
-                                        effect = 30;
-                                    }
-                                }
-                                else if(effectValue == "p"){
-                                    if(effect < 15){
-                                        effect = 15;
-                                    }
-                                }
+                                
                             }
                         }
                     }
@@ -1164,7 +1162,7 @@ window.onload = function(){
 
         //alert(actions);
 
-        var bestEffect = Math.min.apply(null,effects);
+        let bestEffect = Math.min.apply(null,effects);
         //alert(bestEffect);
         if(bestEffect >= 100){
             alert("You Win");
@@ -1173,12 +1171,12 @@ window.onload = function(){
         },100);
         }
 
-        var tmpA = [];
-        var tmpB = [];
-        var tmpC = [];
-        var bestMove = "";
+        let tmpA = [];
+        let tmpB = [];
+        let tmpC = [];
+        let bestMove = "";
 
-        for(var n = 0; n < effects.length; n++){
+        for(let n = 0; n < effects.length; n++){
             if(effects[n] === bestEffect){
                 tmpA.push(actions[n]);
                 tmpB.push(approved[n]);
@@ -1200,7 +1198,7 @@ window.onload = function(){
             sqs[bestMove.split("-")[1]].style.background = '#aaf';
             sqs[bestMove.split("-")[0]].style.background = '#aaf';
 
-            for(var x = 0; x < 64; x++){
+            for(let x = 0; x < 64; x++){
                 //sqs[x].style.background = "#afa"//classList.add("scope");
                 sqs[x].innerHTML = fonts[values[x]];
                 if(values[x] === 0){
