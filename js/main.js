@@ -7,7 +7,7 @@ window.onload = function(){
     let sw = (tsw - 16)/8;
 
     let container = document.getElementById("container");
-    for(let n = 0; n < 64; n++){
+    for(var n = 0; n < 64; n++){
         let square = document.createElement("div");
         square.classList.add("square");
         square.classList.add("s"+n);
@@ -48,7 +48,7 @@ window.onload = function(){
            sqs[n].innerHTML = fonts[values[n]];
         }
         sqs[n].addEventListener("click",check);
-    }
+    } 
 
     function updateSquarecolor(){
         for(let n = 0; n < 64; n++){
@@ -968,15 +968,16 @@ window.onload = function(){
         if(scopes.length) return scopes;
     }
 
-    let myTurn = true;
+    var myTurn = true;
 
     function check(){
         if(myTurn){
-            let n = Number(this.classList[1].slice(1));
+            var n = Number(this.classList[1].slice(1));
+            var target = values[n];
 
-            let scopes = checkBlack(n,values) || [];
+            var scopes = checkBlack(n,values) || [];
 
-            let x = n;
+            var x = n;
 
             if(!moveable){
                 if(scopes.length > 0){
@@ -1087,50 +1088,65 @@ window.onload = function(){
                     var action = Math.random()*3;
                     //Action value
                     var actionValue = tmp[scopes[x]];
-                    if(actionValue === "l"){
-                        action = 100 + Math.random()*3;
+                    switch (actionValue) {
+                        case "l":
+                            action = 100 + Math.random() * 3;
+                            break;
+                        case "w":
+                            action = 50 + Math.random() * 3;
+                            break;
+                        case "v":
+                        case "m":
+                        case "t":
+                            action = 30 + Math.random() * 3;
+                            break;
+                        case "o":
+                            action = 15 + Math.random() * 3;
+                            break;
+                        default:
+                            // Manejar el caso en el que actionValue no coincida con ningún caso
+                            break;
                     }
-                    else if(actionValue === "w"){
-                        action = 50 + Math.random()*3;
-                    }
-                    else if(actionValue === "v"){
-                        action = 30 + Math.random()*3;
-                    }
-                    else if(actionValue === "m"){
-                        action = 30 + Math.random()*3;
-                    }
-                    else if(actionValue === "t"){
-                        action = 30 + Math.random()*3;
-                    }
-                    else if(actionValue === "o"){
-                        action = 15 + Math.random()*3;
-                    }
+                    
                     //Effect value
                     tmp[scopes[x]] = tmp[n];
                     tmp[n] = 0;
                     for(var y = 0; y < 64; y++){
-                         switch (actionValue) {
-                            case "l":
-                                action = 100 + Math.random() * 3;
-                                break;
-                            case "w":
-                                action = 50 + Math.random() * 3;
-                                break;
-                            case "v":
-                            case "m":
-                            case "t":
-                                action = 30 + Math.random() * 3;
-                                break;
-                            case "o":
-                               let randomBytes = new Uint8Array(1);
-                                crypto.getRandomValues(randomBytes);
-                                action = 15 + (randomBytes[0] / 255) * 3;
-                                break;
-                            default:
-                                // Manejar el caso en el que actionValue no coincida con ningún caso
-                                break;
+                        if("otmvlw".indexOf(values[y]) >= 0){
+                            var tmpScp = checkBlack(y,tmp) || [];
+                            for(var z = 0; z < tmpScp.length; z++){
+                                var effectValue = tmp[tmpScp[z]];
+                                if(effectValue == "k"){
+                                    if(effect < 100){
+                                        effect = 100;
+                                    }
+                                }
+                                else if(effectValue == "q"){
+                                    if(effect < 50){
+                                        effect = 50;
+                                    }
+                                }
+                                else if(effectValue == "b"){
+                                    if(effect < 30){
+                                        effect = 30;
+                                    }
+                                }
+                                else if(effectValue == "n"){
+                                    if(effect < 30){
+                                        effect = 30;
+                                    }
+                                }
+                                else if(effectValue == "r"){
+                                    if(effect < 30){
+                                        effect = 30;
+                                    }
+                                }
+                                else if(effectValue == "p"){
+                                    if(effect < 15){
+                                        effect = 15;
+                                    }
+                                }
                             }
-                            
                         }
                     }
 
@@ -1195,6 +1211,5 @@ window.onload = function(){
             //alert('You Win');
         }
     }
-
-
+}
 //chooseTurn();
