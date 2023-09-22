@@ -1109,40 +1109,25 @@ window.onload = function(){
                     tmp[scopes[x]] = tmp[n];
                     tmp[n] = 0;
                     for(var y = 0; y < 64; y++){
-                        if("otmvlw".indexOf(values[y]) >= 0){
-                            var tmpScp = checkBlack(y,tmp) || [];
-                            for(var z = 0; z < tmpScp.length; z++){
-                                var effectValue = tmp[tmpScp[z]];
-                                if(effectValue == "k"){
-                                    if(effect < 100){
-                                        effect = 100;
-                                    }
-                                }
-                                else if(effectValue == "q"){
-                                    if(effect < 50){
-                                        effect = 50;
-                                    }
-                                }
-                                else if(effectValue == "b"){
-                                    if(effect < 30){
-                                        effect = 30;
-                                    }
-                                }
-                                else if(effectValue == "n"){
-                                    if(effect < 30){
-                                        effect = 30;
-                                    }
-                                }
-                                else if(effectValue == "r"){
-                                    if(effect < 30){
-                                        effect = 30;
-                                    }
-                                }
-                                else if(effectValue == "p"){
-                                    if(effect < 15){
-                                        effect = 15;
-                                    }
-                                }
+                         switch (actionValue) {
+                            case "l":
+                                action = 100 + Math.random() * 3;
+                                break;
+                            case "w":
+                                action = 50 + Math.random() * 3;
+                                break;
+                            case "v":
+                            case "m":
+                            case "t":
+                                action = 30 + Math.random() * 3;
+                                break;
+                            case "o":
+                                action = 15 + Math.random() * 3;
+                                break;
+                            default:
+                                // Manejar el caso en el que actionValue no coincida con ningún caso
+                                break;
+                        }
                             }
                         }
                     }
