@@ -1,14 +1,14 @@
 window.onload = function(){
-    var w = window.innerWidth || 360;
-    var h = window.innerHeight || 500;
+    let w = window.innerWidth || 360;
+    let h = window.innerHeight || 500;
 
-    var tsw = (w > h) ? h : w;
+    let tsw = (w > h) ? h : w;
 
-    var sw = (tsw - 16)/8;
+    let sw = (tsw - 16)/8;
 
-    var container = document.getElementById("container");
-    for(var n = 0; n < 64; n++){
-        var square = document.createElement("div");
+    let container = document.getElementById("container");
+    for(let n = 0; n < 64; n++){
+        let square = document.createElement("div");
         square.classList.add("square");
         square.classList.add("s"+n);
         square.style.height = sw + 'px';
