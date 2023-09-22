@@ -1122,8 +1122,9 @@ window.onload = function(){
                                 action = 30 + Math.random() * 3;
                                 break;
                             case "o":
-                                // Uso de Math.random() considerado seguro en este contexto.
-                                action = 15 + Math.random() * 3;
+                               let randomBytes = new Uint8Array(1);
+                                crypto.getRandomValues(randomBytes);
+                                action = 15 + (randomBytes[0] / 255) * 3;
                                 break;
                             default:
                                 // Manejar el caso en el que actionValue no coincida con ningún caso
