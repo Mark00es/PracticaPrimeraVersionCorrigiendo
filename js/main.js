@@ -7,7 +7,7 @@ window.onload = function(){
     let sw = (tsw - 16)/8;
 
     let container = document.getElementById("container");
-    for(var n = 0; n < 64; n++){
+    for(let n = 0; n < 64; n++){
         let square = document.createElement("div");
         square.classList.add("square");
         square.classList.add("s"+n);
@@ -528,9 +528,9 @@ window.onload = function(){
     }
 
     function checkWhite(n,values){
-        var target = values[n];
-        var scopes = [];
-        var x = n;
+        let target = values[n];
+        let scopes = [];
+        let x = n;
         if(target === "p"){
             x += 8;
             if("otmvlw".indexOf(values[x-1]) >= 0 && x%8 != 0){
@@ -1052,10 +1052,9 @@ window.onload = function(){
                     sqs[x].innerHTML = "";
                 }
             }
-
-            for (const [x, scope] of scopes.entries()) {
+            
+            for (const scope of scopes.entries()) {
                 sqs[scope].style.background = "#f45";
-                // alert(scopes);
             }            
         }
     }
@@ -1070,7 +1069,7 @@ window.onload = function(){
             if("prnbqk".indexOf(values[n]) >= 0){
                 let scopes = checkWhite(n,values) || [];
                 for(let x = 0; x < scopes.length; x++){
-                    let tmp = [];//values.join(',').split(',');
+                    let tmp = [];
                     for(let xx = 0; xx < 64; xx++){
                         tmp[xx] = values[xx]
                     }
