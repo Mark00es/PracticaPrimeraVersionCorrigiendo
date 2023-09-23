@@ -994,8 +994,8 @@ window.onload = function(){
                     for (let piece of checkArr) { // Use a for-of loop
                         if ("prnbkq".indexOf(piece) >= 0) {
                             let checkScp = checkWhite(checkArr.indexOf(piece), checkArr) || [];
-                            for (const piece of checkScp) {
-                                if (checkArr[piece] === 'l') {
+                            for (let z = 0; z < checkScp.length; z++) {
+                                if (checkArr[checkScp[z]] === 'l') {
                                     if (!saveKing) {
                                         alert('Save Your King');
                                         saveKing = true;
