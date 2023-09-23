@@ -991,19 +991,19 @@ window.onload = function(){
             }
             else {
                 if(moveScopes.indexOf(String(n)) >= 0){
-                    var checkArr = [];
-                    var saveKing = false;
-                    for(var z = 0; z < 64; z++){
+                    let checkArr = [];
+                    let saveKing = false;
+                    for(let z = 0; z < 64; z++){
                         checkArr[z] = values[z];
                     }
 
                     checkArr[n] = checkArr[moveTarget];
                     checkArr[moveTarget] = 0;
 
-                    for(var y = 0; y < 64; y++){
+                    for(let y = 0; y < 64; y++){
                         if("prnbkq".indexOf(checkArr[y]) >= 0){
-                            var checkScp = checkWhite(y,checkArr) || [];
-                            for(var z = 0; z < checkScp.length; z++){
+                            let checkScp = checkWhite(y,checkArr) || [];
+                            for(let z = 0; z < checkScp.length; z++){
                                 if(checkArr[checkScp[z]] === 'l'){
                                     if(!saveKing){
                                         alert('Save Your King');
@@ -1053,14 +1053,14 @@ window.onload = function(){
 
             updateSquarecolor();
 
-            for(var x = 0; x < 64; x++){
+            for(let x = 0; x < 64; x++){
                 sqs[x].innerHTML = fonts[values[x]];
                 if(values[x] === 0){
                     sqs[x].innerHTML = "";
                 }
             }
 
-            for(var x = 0; x < scopes.length; x++){
+            for(let x = 0; x < scopes.length; x++){
                 sqs[scopes[x]].style.background = "#f45";//.classList.add("scope");
             //    alert(scopes)
             }
@@ -1068,26 +1068,26 @@ window.onload = function(){
     }
 
 
-    var arr = [];
+    let arr = [];
 
     function chooseTurn(){
-        var approved = [];
-        var actions = [];
-        var effects = [];
+        let approved = [];
+        let actions = [];
+        let effects = [];
 
 
-        for(var n = 0; n < 64; n++){
+        for(let n = 0; n < 64; n++){
             if("prnbqk".indexOf(values[n]) >= 0){
-                var scopes = checkWhite(n,values) || [];
-                for(var x = 0; x < scopes.length; x++){
-                    var tmp = []//values.join(',').split(',');
-                    for(var xx = 0; xx < 64; xx++){
+                let scopes = checkWhite(n,values) || [];
+                for(let x = 0; x < scopes.length; x++){
+                    let tmp = []//values.join(',').split(',');
+                    for(let xx = 0; xx < 64; xx++){
                         tmp[xx] = values[xx]
                     }
-                    var effect = 0;
-                    var action = Math.random()*3;
+                    let effect = 0;
+                    let action = Math.random()*3;
                     //Action value
-                    var actionValue = tmp[scopes[x]];
+                    let actionValue = tmp[scopes[x]];
                     switch (actionValue) {
                         case "l":
                             action = 100 + Math.random() * 3;
@@ -1113,11 +1113,11 @@ window.onload = function(){
                     //Effect value
                     tmp[scopes[x]] = tmp[n];
                     tmp[n] = 0;
-                    for(var y = 0; y < 64; y++){
+                    for(let y = 0; y < 64; y++){
                         if("otmvlw".indexOf(values[y]) >= 0){
-                            var tmpScp = checkBlack(y,tmp) || [];
-                            for(var z = 0; z < tmpScp.length; z++){
-                                var effectValue = tmp[tmpScp[z]];
+                            let tmpScp = checkBlack(y,tmp) || [];
+                            for(let z = 0; z < tmpScp.length; z++){
+                                let effectValue = tmp[tmpScp[z]];
                                 switch (effectValue) {
                                     case "k":
                                         if (effect < 100) {
