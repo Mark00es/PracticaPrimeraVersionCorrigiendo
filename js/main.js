@@ -991,9 +991,9 @@ window.onload = function(){
                     checkArr[n] = checkArr[moveTarget];
                     checkArr[moveTarget] = 0;
 
-                    for (let piece of checkArr) { // Use a for-of loop
-                        if ("prnbkq".indexOf(piece) >= 0) {
-                            let checkScp = checkWhite(checkArr.indexOf(piece), checkArr) || [];
+                    for(let y = 0; y < 64; y++){// Use a for-of loop
+                        if("prnbkq".indexOf(checkArr[y]) >= 0) {
+                            let checkScp = checkWhite(y,checkArr) || [];
                             for (let z = 0; z < checkScp.length; z++) {
                                 if (checkArr[checkScp[z]] === 'l') {
                                     if (!saveKing) {
