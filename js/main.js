@@ -1060,9 +1060,6 @@ window.onload = function(){
         }
     }
 
-
-    let arr = [];
-
     function chooseTurn(){
         let approved = [];
         let actions = [];
