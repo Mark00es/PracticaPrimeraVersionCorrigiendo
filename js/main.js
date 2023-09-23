@@ -509,14 +509,12 @@ window.onload = function(){
             if(!ck){
                 cl = false;
                 if(!cr2){
-                //    cl = false;
                     if(values[n+1] === 0 && values[n+2] === 0 && values[n+3] === "t"){
                         scopes.push(x+2);
                         cl = true;
                     }
                 }
                 if(!cr1){
-                //    cl = false;
                     if(values[n-1] === 0 && values[n-2] === 0 && values[n-3] === 0 && values[n-4] === "t"){
                         scopes.push(x-2);
                         cl = true;
@@ -1052,7 +1050,7 @@ window.onload = function(){
                     sqs[x].innerHTML = "";
                 }
             }
-            
+
             for (const scope of scopes.entries()) {
                 sqs[scope].style.background = "#f45";
             }            
