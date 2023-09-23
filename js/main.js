@@ -1084,12 +1084,16 @@ window.onload = function(){
                             action = 100 + (randomBytesl[0] / 255) * 3;                            
                             break;
                         case "w":
-                            action = 50 + Math.random() * 3;
+                            let randomBytesw = new Uint8Array(1);
+                            crypto.getRandomValues(randomBytes);
+                            action = 50 + (randomBytesw[0] / 255) * 3;                            
                             break;
                         case "v":
                         case "m":
                         case "t":
-                            action = 30 + Math.random() * 3;
+                            let randomBytest = new Uint8Array(1);
+                            crypto.getRandomValues(randomBytes);
+                            action = 30 + (randomBytest[0] / 255) * 3;                            
                             break;
                         case "o":
                             let randomBytes = new Uint8Array(1);
