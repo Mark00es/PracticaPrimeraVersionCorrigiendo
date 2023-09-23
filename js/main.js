@@ -1085,12 +1085,16 @@ window.onload = function(){
                         tmp[xx] = values[xx]
                     }
                     let effect = 0;
-                    let action = Math.random()*3;
+                    let randomArray = new Uint32Array(1);
+                    crypto.getRandomValues(randomArray);
+                    let action = randomArray[0] % 4;                    
                     //Action value
                     let actionValue = tmp[scopes[x]];
                     switch (actionValue) {
                         case "l":
-                            action = 100 + Math.random() * 3;
+                            let randomBytesl = new Uint8Array(1);
+                            crypto.getRandomValues(randomBytes);
+                            action = 100 + (randomBytesl[0] / 255) * 3;                            
                             break;
                         case "w":
                             action = 50 + Math.random() * 3;
