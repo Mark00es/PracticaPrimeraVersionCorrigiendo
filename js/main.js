@@ -968,7 +968,7 @@ window.onload = function(){
         if(scopes.length) return scopes;
     }
 
-    var myTurn = true;
+    let myTurn = true;
 
     function check(){
         if(myTurn){
