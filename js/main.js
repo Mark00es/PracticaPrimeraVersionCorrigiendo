@@ -1082,7 +1082,7 @@ window.onload = function(){
                     crypto.getRandomValues(randomArray);
                     let action = randomArray[0] % 4;                    
                     //Action value
-                    let actionValue = tmp[scopes[x]];
+                    let actionValue = tmp[scopes[x]].toString();
                     switch (actionValue) {
                         case "l":
                             let randomBytesl = new Uint8Array(1);
