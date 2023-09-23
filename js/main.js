@@ -993,12 +993,12 @@ window.onload = function(){
                     checkArr[n] = checkArr[moveTarget];
                     checkArr[moveTarget] = 0;
 
-                    for(let y = 0; y < 64; y++){
-                        if("prnbkq".indexOf(checkArr[y]) >= 0){
-                            let checkScp = checkWhite(y,checkArr) || [];
-                            for(let z = 0; z < checkScp.length; z++){
-                                if(checkArr[checkScp[z]] === 'l'){
-                                    if(!saveKing){
+                    for (let piece of checkArr) { // Use a for-of loop
+                        if ("prnbkq".indexOf(piece) >= 0) {
+                            let checkScp = checkWhite(checkArr.indexOf(piece), checkArr) || [];
+                            for (let z = 0; z < checkScp.length; z++) {
+                                if (checkArr[checkScp[z]] === 'l') {
+                                    if (!saveKing) {
                                         alert('Save Your King');
                                         saveKing = true;
                                     }
@@ -1053,10 +1053,10 @@ window.onload = function(){
                 }
             }
 
-            for(let x = 0; x < scopes.length; x++){
-                sqs[scopes[x]].style.background = "#f45";//.classList.add("scope");
-            //    alert(scopes)
-            }
+            for (const [x, scope] of scopes.entries()) {
+                sqs[scope].style.background = "#f45";
+                // alert(scopes);
+            }            
         }
     }
 
