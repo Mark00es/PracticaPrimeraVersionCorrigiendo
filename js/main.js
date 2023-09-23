@@ -1051,9 +1051,9 @@ window.onload = function(){
                 }
             }
 
-            for (const scope of scopes.entries()) {
-                sqs[scope].style.background = "#f45";
-            }            
+            for(let x = 0; x < scopes.length; x++){
+                sqs[scopes[x]].style.background = "#f45";//.classList.add("scope");
+            }
         }
     }
 
