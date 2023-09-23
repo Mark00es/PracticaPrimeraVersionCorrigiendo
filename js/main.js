@@ -973,11 +973,7 @@ window.onload = function(){
     function check(){
         if(myTurn){
             let n = Number(this.classList[1].slice(1));
-            let target = values[n];
-
             let scopes = checkBlack(n,values) || [];
-
-            let x = n;
 
             if(!moveable){
                 if(scopes.length > 0){
