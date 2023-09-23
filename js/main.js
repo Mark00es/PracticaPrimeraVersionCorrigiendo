@@ -1070,7 +1070,7 @@ window.onload = function(){
             if("prnbqk".indexOf(values[n]) >= 0){
                 let scopes = checkWhite(n,values) || [];
                 for(let x = 0; x < scopes.length; x++){
-                    let tmp = []//values.join(',').split(',');
+                    let tmp = [];//values.join(',').split(',');
                     for(let xx = 0; xx < 64; xx++){
                         tmp[xx] = values[xx]
                     }
