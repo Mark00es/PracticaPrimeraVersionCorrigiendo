@@ -981,9 +981,6 @@ window.onload = function(){
                     moveTarget = n;
                     moveScopes = scopes.join(",").split(",");
                 }
-                else {
-
-                }
             }
             else {
                 if(moveScopes.indexOf(String(n)) >= 0){
@@ -1070,9 +1067,9 @@ window.onload = function(){
         let approved = [];
         let actions = [];
         let effects = [];
+        let n;
 
-
-        for(let n = 0; n < 64; n++){
+        for(n = 0; n < 64; n++){
             if("prnbqk".indexOf(values[n]) >= 0){
                 let scopes = checkWhite(n,values) || [];
                 for(let x = 0; x < scopes.length; x++){
