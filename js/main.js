@@ -1064,7 +1064,7 @@ window.onload = function(){
         let n;
 
         for(n = 0; n < 64; n++){
-            if("prnbqk".indexOf(values[n],toString()) >= 0){
+            if("prnbqk".indexOf(values[n].toString()) >= 0){
                 let scopes = checkWhite(n,values) || [];
                 for(let x = 0; x < scopes.length; x++){
                     let tmp = [];
