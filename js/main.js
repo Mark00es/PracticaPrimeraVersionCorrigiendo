@@ -1079,26 +1079,18 @@ window.onload = function(){
                     let actionValue = tmp[scopes[x]].toString();
                     switch (actionValue) {
                         case "l":
-                            let randomBytesl = new Uint8Array(1);
-                            crypto.getRandomValues(randomBytes);
-                            action = 100 + (randomBytesl[0] / 255) * 3;                            
+                            action = 100 + Math.random()*3;                            
                             break;
                         case "w":
-                            let randomBytesw = new Uint8Array(1);
-                            crypto.getRandomValues(randomBytes);
-                            action = 50 + (randomBytesw[0] / 255) * 3;                            
+                            action = 50 + Math.random()*3;                            
                             break;
                         case "v":
                         case "m":
                         case "t":
-                            let randomBytest = new Uint8Array(1);
-                            crypto.getRandomValues(randomBytes);
-                            action = 30 + (randomBytest[0] / 255) * 3;                            
+                            action = 30 + Math.random()*3;                            
                             break;
                         case "o":
-                            let randomBytes = new Uint8Array(1);
-                            crypto.getRandomValues(randomBytes);
-                            action = 15 + (randomBytes[0] / 255) * 3;
+                            action = 15 + Math.random()*3;
                             break;
                         default:
                             // Manejar el caso en el que actionValue no coincida con ningún caso
