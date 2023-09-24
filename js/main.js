@@ -7,7 +7,7 @@ window.onload = function(){
     let sw = (tsw - 16)/8;
 
     let container = document.getElementById("container");
-    for(var n = 0; n < 64; n++){
+    for(let n = 0; n < 64; n++){
         let square = document.createElement("div");
         square.classList.add("square");
         square.classList.add("s"+n);
@@ -71,137 +71,101 @@ window.onload = function(){
         let target = values[n];
         let scopes = [];
         let x = n;
-
-        if(target === "o"){
-            x -= 8;
-            if("prnbkq".indexOf(values[x-1]) >= 0 && x%8 != 0){
-                scopes.push(x-1);
-            }
-            if("prnbkq".indexOf(values[x+1]) >= 0 && x%8 != 7){
-                scopes.push(x+1);
-            }
-            if(x >= 0 && values[x] === 0){
-                scopes.push(x);
-                if(x >= 40){
-                    if(x-8 >= 0 && values[x-8] === 0){
-                        scopes.push(x-8);
+        switch(target){
+            case "o":
+                x -= 8;
+                if("prnbkq".indexOf(values[x-1]) >= 0 && x%8 != 0){
+                    scopes.push(x-1);
+                }
+                if("prnbkq".indexOf(values[x+1]) >= 0 && x%8 != 7){
+                    scopes.push(x+1);
+                }
+                if(x >= 0 && values[x] === 0){
+                    scopes.push(x);
+                    if(x >= 40){
+                        if(x-8 >= 0 && values[x-8] === 0){
+                            scopes.push(x-8);
+                        }
                     }
                 }
-            }
-        }
-
-        else if(target === "t"){
-            x = n;
-            x -= 8;
-            while(x >= 0){
-                if(values[x] === 0){
-                    scopes.push(x);
-                }
-                else if("prnbqk".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
+                break;
+            case "t":
+                x = n;
                 x -= 8;
-            }
-            x = n;
-            x += 8;
-            while(x < 64){
-                if(values[x] === 0){
-                    scopes.push(x);
+                while(x >= 0){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("prnbqk".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x -= 8;
                 }
-                else if("prnbqk".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
+                x = n;
                 x += 8;
-            }
-            x = n;
-            x++;
-            while(x%8 != 0){
-                if(values[x] === 0){
-                    scopes.push(x);
+                while(x < 64){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("prnbqk".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x += 8;
                 }
-                else if("prnbqk".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
+                x = n;
                 x++;
-            }
-            x = n;
-            x--;
-            while(x%8 != 7){
-                if(values[x] === 0){
-                    scopes.push(x);
+                while(x%8 != 0){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("prnbqk".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x++;
                 }
-                else if("prnbqk".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
+                x = n;
                 x--;
-            }
-        }
-
-        else if(target === "m"){
-            x = n;
-            if(x%8 > 1 && x%8 < 6){
-                x -= 17;
-                if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                    scopes.push(x);
+                while(x%8 != 7){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("prnbqk".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x--;
                 }
+                break;
+            case "m":
                 x = n;
-                x -= 15;
-                if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                    scopes.push(x);
-                }
-
-                x = n;
-                x -= 10;
-                if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                    scopes.push(x);
-                }
-                x = n;
-                x -= 6;
-                if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                    scopes.push(x);
-                }
-                x = n;
-                x += 6;
-                if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                    scopes.push(x);
-                }
-                x = n;
-                x += 10;
-                if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                    scopes.push(x);
-                }
-                x = n;
-                x += 15;
-                if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                    scopes.push(x);
-                }
-                x = n;
-                x += 17;
-                if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                    scopes.push(x);
-                }
-            }
-            else {
-                x = n;
-                if(x%8 <= 1){
+                if(x%8 > 1 && x%8 < 6){
+                    x -= 17;
+                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        scopes.push(x);
+                    }
                     x = n;
                     x -= 15;
+                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        scopes.push(x);
+                    }
+    
+                    x = n;
+                    x -= 10;
                     if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
@@ -211,54 +175,17 @@ window.onload = function(){
                         scopes.push(x);
                     }
                     x = n;
-                    x += 10;
-                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                        scopes.push(x);
-                    }
-                    x = n;
-                    x += 17;
-                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                        scopes.push(x);
-                    }
-                }
-                x = n;
-                if(x%8 === 1){
-                    x -= 17;
-                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                        scopes.push(x);
-                    }
-                    x = n;
-                    x += 15;
-                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                        scopes.push(x);
-                    }
-                }
-                if(x%8 >= 6){
-                    x = n;
-                    x -= 17;
-                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                        scopes.push(x);
-                    }
-                    x = n;
-                    x -= 10;
-                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                        scopes.push(x);
-                    }
-                    x = n;
                     x += 6;
                     if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                     x = n;
-                    x += 15;
+                    x += 10;
                     if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
-                }
-                x = n;
-                if(x%8 === 6){
                     x = n;
-                    x -= 15;
+                    x += 15;
                     if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
@@ -268,399 +195,432 @@ window.onload = function(){
                         scopes.push(x);
                     }
                 }
-            }
-        }
-
-        else if(target === "v"){
-            x = n;
-            x -= 9;
-            while(x >= 0 && x%8 !== 7){
-                if(values[x] === 0){
-                    scopes.push(x);
-                }
-                else if("prnbqk".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
                 else {
-                    break;
+                    x = n;
+                    if(x%8 <= 1){
+                        x = n;
+                        x -= 15;
+                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                            scopes.push(x);
+                        }
+                        x = n;
+                        x -= 6;
+                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                            scopes.push(x);
+                        }
+                        x = n;
+                        x += 10;
+                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                            scopes.push(x);
+                        }
+                        x = n;
+                        x += 17;
+                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                            scopes.push(x);
+                        }
+                    }
+                    x = n;
+                    if(x%8 === 1){
+                        x -= 17;
+                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                            scopes.push(x);
+                        }
+                        x = n;
+                        x += 15;
+                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                            scopes.push(x);
+                        }
+                    }
+                    if(x%8 >= 6){
+                        x = n;
+                        x -= 17;
+                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                            scopes.push(x);
+                        }
+                        x = n;
+                        x -= 10;
+                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                            scopes.push(x);
+                        }
+                        x = n;
+                        x += 6;
+                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                            scopes.push(x);
+                        }
+                        x = n;
+                        x += 15;
+                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                            scopes.push(x);
+                        }
+                    }
+                    x = n;
+                    if(x%8 === 6){
+                        x = n;
+                        x -= 15;
+                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                            scopes.push(x);
+                        }
+                        x = n;
+                        x += 17;
+                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                            scopes.push(x);
+                        }
+                    }
                 }
+                break;
+            case "v":
+                x = n;
                 x -= 9;
-            }
-            x = n;
-            x += 7;
-            while(x < 64 && x%8 !== 7){
-                if(values[x] === 0){
-                    scopes.push(x);
+                while(x >= 0 && x%8 !== 7){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("prnbqk".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x -= 9;
                 }
-                else if("prnbqk".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
+                x = n;
                 x += 7;
-            }
-            x = n;
-            x += 9;
-            while(x%8 != 0 && x%8 !== 0){
-                if(values[x] === 0){
-                    scopes.push(x);
+                while(x < 64 && x%8 !== 7){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("prnbqk".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x += 7;
                 }
-                else if("prnbqk".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
+                x = n;
                 x += 9;
-            }
-            x = n;
-            x -= 7;
-            while(x%8 != 0){
-                if(values[x] === 0){
-                    scopes.push(x);
+                while(x%8 != 0 && x%8 !== 0){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("prnbqk".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x += 9;
                 }
-                else if("prnbqk".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
+                x = n;
                 x -= 7;
-            }
-        }
-
-        else if(target === "w"){
-            x = n;
-            x -= 8;
-            while(x >= 0){
-                if(values[x] === 0){
-                    scopes.push(x);
+                while(x%8 != 0){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("prnbqk".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x -= 7;
                 }
-                else if("prnbqk".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
+                break;
+            case "w":
+                x = n;
                 x -= 8;
-            }
-            x = n;
-            x += 8;
-            while(x < 64){
-                if(values[x] === 0){
-                    scopes.push(x);
+                while(x >= 0){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("prnbqk".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x -= 8;
                 }
-                else if("prnbqk".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
+                x = n;
                 x += 8;
-            }
-            x = n;
-            x++;
-            while(x%8 != 0){
-                if(values[x] === 0){
-                    scopes.push(x);
+                while(x < 64){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("prnbqk".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x += 8;
                 }
-                else if("prnbqk".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
+                x = n;
                 x++;
-            }
-            x = n;
-            x--;
-            while(x%8 != 7){
-                if(values[x] === 0){
-                    scopes.push(x);
+                while(x%8 != 0){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("prnbqk".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x++;
                 }
-                else if("prnbqk".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
+                x = n;
                 x--;
-            }
-            x = n;
-            x -= 9;
-            while(x >= 0 && x%8 !== 7){
-                if(values[x] === 0){
-                    scopes.push(x);
-                }
-                else if("prnbqk".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
-                x -= 9;
-            }
-            x = n;
-            x += 7;
-            while(x < 64 && x%8 !== 7){
-                if(values[x] === 0){
-                    scopes.push(x);
-                }
-                else if("prnbqk".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
-                x += 7;
-            }
-            x = n;
-            x += 9;
-            while(x%8 != 0 && x%8 !== 0){
-                if(values[x] === 0){
-                    scopes.push(x);
-                }
-                else if("prnbqk".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
-                x += 9;
-            }
-            x = n;
-            x -= 7;
-            while(x%8 != 0){
-                if(values[x] === 0){
-                    scopes.push(x);
-                }
-                else if("prnbqk".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
-                x -= 7;
-            }
-        }
-
-        else if(target === "l"){
-            x = n;
-            x += 8;
-            if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                scopes.push(x);
-            }
-            x = n;
-            x -= 8;
-            if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                scopes.push(x);
-            }
-            x = n;
-            if(x%8 > 0){
-                x = n;
-                x -= 1;
-                if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                    scopes.push(x);
+                while(x%8 != 7){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("prnbqk".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x--;
                 }
                 x = n;
                 x -= 9;
-                if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                    scopes.push(x);
+                while(x >= 0 && x%8 !== 7){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("prnbqk".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x -= 9;
                 }
-
                 x = n;
                 x += 7;
-                if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                    scopes.push(x);
-                }
-            }
-            x = n;
-            if(x%8 < 7){
-                x = n;
-                x += 1;
-                if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                    scopes.push(x);
+                while(x < 64 && x%8 !== 7){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("prnbqk".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x += 7;
                 }
                 x = n;
                 x += 9;
+                while(x%8 != 0 && x%8 !== 0){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("prnbqk".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x += 9;
+                }
+                x = n;
+                x -= 7;
+                while(x%8 != 0){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("prnbqk".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x -= 7;
+                }
+                break;
+            case "l":
+                x = n;
+                x += 8;
                 if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
                     scopes.push(x);
                 }
                 x = n;
-                x -= 7;
+                x -= 8;
                 if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
                     scopes.push(x);
                 }
-            }
-            x = n;
-            if(!ck){
-                cl = false;
-                if(!cr2){
-                //    cl = false;
-                    if(values[n+1] === 0 && values[n+2] === 0 && values[n+3] === "t"){
-                        scopes.push(x+2);
-                        cl = true;
+                x = n;
+                if(x%8 > 0){
+                    x = n;
+                    x -= 1;
+                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        scopes.push(x);
+                    }
+                    x = n;
+                    x -= 9;
+                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        scopes.push(x);
+                    }
+    
+                    x = n;
+                    x += 7;
+                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        scopes.push(x);
                     }
                 }
-                if(!cr1){
-                //    cl = false;
-                    if(values[n-1] === 0 && values[n-2] === 0 && values[n-3] === 0 && values[n-4] === "t"){
-                        scopes.push(x-2);
-                        cl = true;
+                x = n;
+                if(x%8 < 7){
+                    x = n;
+                    x += 1;
+                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        scopes.push(x);
+                    }
+                    x = n;
+                    x += 9;
+                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        scopes.push(x);
+                    }
+                    x = n;
+                    x -= 7;
+                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        scopes.push(x);
                     }
                 }
-            }
+                x = n;
+                if(!ck){
+                    cl = false;
+                    if(!cr2){
+                        if(values[n+1] === 0 && values[n+2] === 0 && values[n+3] === "t"){
+                            scopes.push(x+2);
+                            cl = true;
+                        }
+                    }
+                    if(!cr1){
+                        if(values[n-1] === 0 && values[n-2] === 0 && values[n-3] === 0 && values[n-4] === "t"){
+                            scopes.push(x-2);
+                            cl = true;
+                        }
+                    }
+                }
+                break;
+            
         }
         if(scopes.length) return scopes;
     }
 
     function checkWhite(n,values){
-        var target = values[n];
-        var scopes = [];
-        var x = n;
-        if(target === "p"){
-            x += 8;
-            if("otmvlw".indexOf(values[x-1]) >= 0 && x%8 != 0){
-                scopes.push(x-1);
-            }
-            if("otmvlw".indexOf(values[x+1]) >= 0 && x%8 != 7){
-                scopes.push(x+1);
-            }
-            if(x < 64 && values[x] === 0){
-                scopes.push(x);
-                if(x <= 23){
-                    if(x+8 >= 0 && values[x+8] === 0){
-                        scopes.push(x+8);
+        let target = values[n];
+        let scopes = [];
+        let x = n;
+        switch(target){
+            case "p":
+                x += 8;
+                if("otmvlw".indexOf(values[x-1]) >= 0 && x%8 != 0){
+                    scopes.push(x-1);
+                }
+                if("otmvlw".indexOf(values[x+1]) >= 0 && x%8 != 7){
+                    scopes.push(x+1);
+                }
+                if(x < 64 && values[x] === 0){
+                    scopes.push(x);
+                    if(x <= 23){
+                        if(x+8 >= 0 && values[x+8] === 0){
+                            scopes.push(x+8);
+                        }
                     }
                 }
-            }
-        }
-
-        else if(target === "r"){
-            x = n;
-            x -= 8;
-            while(x >= 0){
-                if(values[x] === 0){
-                    scopes.push(x);
-                }
-                else if("otmvlw".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
+                break;
+            case "r":
+                x = n;
                 x -= 8;
-            }
-            x = n;
-            x += 8;
-            while(x < 64){
-                if(values[x] === 0){
-                    scopes.push(x);
+                while(x >= 0){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("otmvlw".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x -= 8;
                 }
-                else if("otmvlw".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
+                x = n;
                 x += 8;
-            }
-            x = n;
-            x++;
-            while(x%8 != 0){
-                if(values[x] === 0){
-                    scopes.push(x);
+                while(x < 64){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("otmvlw".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x += 8;
                 }
-                else if("otmvlw".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
+                x = n;
                 x++;
-            }
-            x = n;
-            x--;
-            while(x%8 != 7){
-                if(values[x] === 0){
-                    scopes.push(x);
+                while(x%8 != 0){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("otmvlw".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x++;
                 }
-                else if("otmvlw".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
+                x = n;
                 x--;
-            }
-        }
-
-        else if(target === "n"){
-            x = n;
-            if(x%8 > 1 && x%8 < 6){
-                x -= 17;
-                if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                    scopes.push(x);
+                while(x%8 != 7){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("otmvlw".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x--;
                 }
+                break;
+            case "n":
                 x = n;
-                x -= 15;
-                if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                    scopes.push(x);
-                }
-
-                x = n;
-                x -= 10;
-                if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                    scopes.push(x);
-                }
-                x = n;
-                x -= 6;
-                if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                    scopes.push(x);
-                }
-                x = n;
-                x += 6;
-                if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                    scopes.push(x);
-                }
-                x = n;
-                x += 10;
-                if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                    scopes.push(x);
-                }
-                x = n;
-                x += 15;
-                if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                    scopes.push(x);
-                }
-                x = n;
-                x += 17;
-                if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                    scopes.push(x);
-                }
-            }
-            else {
-                x = n;
-                if(x%8 <= 1){
+                if(x%8 > 1 && x%8 < 6){
+                    x -= 17;
+                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        scopes.push(x);
+                    }
                     x = n;
                     x -= 15;
+                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        scopes.push(x);
+                    }
+    
+                    x = n;
+                    x -= 10;
                     if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
@@ -670,54 +630,17 @@ window.onload = function(){
                         scopes.push(x);
                     }
                     x = n;
-                    x += 10;
-                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                        scopes.push(x);
-                    }
-                    x = n;
-                    x += 17;
-                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                        scopes.push(x);
-                    }
-                }
-                x = n;
-                if(x%8 === 1){
-                    x -= 17;
-                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                        scopes.push(x);
-                    }
-                    x = n;
-                    x += 15;
-                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                        scopes.push(x);
-                    }
-                }
-                if(x%8 >= 6){
-                    x = n;
-                    x -= 17;
-                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                        scopes.push(x);
-                    }
-                    x = n;
-                    x -= 10;
-                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                        scopes.push(x);
-                    }
-                    x = n;
                     x += 6;
                     if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                     x = n;
-                    x += 15;
+                    x += 10;
                     if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
-                }
-                x = n;
-                if(x%8 === 6){
                     x = n;
-                    x -= 15;
+                    x += 15;
                     if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
@@ -727,266 +650,328 @@ window.onload = function(){
                         scopes.push(x);
                     }
                 }
-            }
-        }
-
-        else if(target === "b"){
-            x = n;
-            x -= 9;
-            while(x >= 0 && x%8 !== 7){
-                if(values[x] === 0){
-                    scopes.push(x);
-                }
-                else if("otmvlw".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
                 else {
-                    break;
+                    x = n;
+                    if(x%8 <= 1){
+                        x = n;
+                        x -= 15;
+                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                            scopes.push(x);
+                        }
+                        x = n;
+                        x -= 6;
+                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                            scopes.push(x);
+                        }
+                        x = n;
+                        x += 10;
+                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                            scopes.push(x);
+                        }
+                        x = n;
+                        x += 17;
+                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                            scopes.push(x);
+                        }
+                    }
+                    x = n;
+                    if(x%8 === 1){
+                        x -= 17;
+                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                            scopes.push(x);
+                        }
+                        x = n;
+                        x += 15;
+                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                            scopes.push(x);
+                        }
+                    }
+                    if(x%8 >= 6){
+                        x = n;
+                        x -= 17;
+                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                            scopes.push(x);
+                        }
+                        x = n;
+                        x -= 10;
+                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                            scopes.push(x);
+                        }
+                        x = n;
+                        x += 6;
+                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                            scopes.push(x);
+                        }
+                        x = n;
+                        x += 15;
+                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                            scopes.push(x);
+                        }
+                    }
+                    x = n;
+                    if(x%8 === 6){
+                        x = n;
+                        x -= 15;
+                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                            scopes.push(x);
+                        }
+                        x = n;
+                        x += 17;
+                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                            scopes.push(x);
+                        }
+                    }
                 }
+                break;
+            case "b":
+                x = n;
                 x -= 9;
-            }
-            x = n;
-            x += 7;
-            while(x < 64 && x%8 !== 7){
-                if(values[x] === 0){
-                    scopes.push(x);
+                while(x >= 0 && x%8 !== 7){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("otmvlw".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x -= 9;
                 }
-                else if("otmvlw".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
+                x = n;
                 x += 7;
-            }
-            x = n;
-            x += 9;
-            while(x%8 != 0 && x%8 !== 0){
-                if(values[x] === 0){
-                    scopes.push(x);
+                while(x < 64 && x%8 !== 7){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("otmvlw".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x += 7;
                 }
-                else if("otmvlw".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
+                x = n;
                 x += 9;
-            }
-            x = n;
-            x -= 7;
-            while(x%8 != 0){
-                if(values[x] === 0){
-                    scopes.push(x);
+                while(x%8 != 0 && x%8 !== 0){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("otmvlw".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x += 9;
                 }
-                else if("otmvlw".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
+                x = n;
                 x -= 7;
-            }
-        }
-
-        else if(target === "q"){
-            x = n;
-            x -= 8;
-            while(x >= 0){
-                if(values[x] === 0){
-                    scopes.push(x);
+                while(x%8 != 0){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("otmvlw".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x -= 7;
                 }
-                else if("otmvlw".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
+                break;
+            case "q":
+                x = n;
                 x -= 8;
-            }
-            x = n;
-            x += 8;
-            while(x < 64){
-                if(values[x] === 0){
-                    scopes.push(x);
+                while(x >= 0){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("otmvlw".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x -= 8;
                 }
-                else if("otmvlw".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
+                x = n;
                 x += 8;
-            }
-            x = n;
-            x++;
-            while(x%8 != 0){
-                if(values[x] === 0){
-                    scopes.push(x);
+                while(x < 64){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("otmvlw".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x += 8;
                 }
-                else if("otmvlw".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
+                x = n;
                 x++;
-            }
-            x = n;
-            x--;
-            while(x%8 != 7){
-                if(values[x] === 0){
-                    scopes.push(x);
+                while(x%8 != 0){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("otmvlw".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x++;
                 }
-                else if("otmvlw".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
+                x = n;
                 x--;
-            }
-            x = n;
-            x -= 9;
-            while(x >= 0 && x%8 !== 7){
-                if(values[x] === 0){
-                    scopes.push(x);
-                }
-                else if("otmvlw".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
-                x -= 9;
-            }
-            x = n;
-            x += 7;
-            while(x < 64 && x%8 !== 7){
-                if(values[x] === 0){
-                    scopes.push(x);
-                }
-                else if("otmvlw".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
-                x += 7;
-            }
-            x = n;
-            x += 9;
-            while(x%8 != 0 && x%8 !== 0){
-                if(values[x] === 0){
-                    scopes.push(x);
-                }
-                else if("otmvlw".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
-                x += 9;
-            }
-            x = n;
-            x -= 7;
-            while(x%8 != 0){
-                if(values[x] === 0){
-                    scopes.push(x);
-                }
-                else if("otmvlw".indexOf(values[x]) >= 0){
-                    scopes.push(x);
-                    break;
-                }
-                else {
-                    break;
-                }
-                x -= 7;
-            }
-        }
-
-        else if(target === "k"){
-            x = n;
-            x += 8;
-            if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                scopes.push(x);
-            }
-            x = n;
-            x -= 8;
-            if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                scopes.push(x);
-            }
-            x = n;
-            if(x%8 > 0){
-                x = n;
-                x -= 1;
-                if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                    scopes.push(x);
+                while(x%8 != 7){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("otmvlw".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x--;
                 }
                 x = n;
                 x -= 9;
-                if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                    scopes.push(x);
+                while(x >= 0 && x%8 !== 7){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("otmvlw".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x -= 9;
                 }
-
                 x = n;
                 x += 7;
-                if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                    scopes.push(x);
-                }
-            }
-            x = n;
-            if(x%8 < 7){
-                x = n;
-                x += 1;
-                if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
-                    scopes.push(x);
+                while(x < 64 && x%8 !== 7){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("otmvlw".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x += 7;
                 }
                 x = n;
                 x += 9;
+                while(x%8 != 0 && x%8 !== 0){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("otmvlw".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x += 9;
+                }
+                x = n;
+                x -= 7;
+                while(x%8 != 0){
+                    if(values[x] === 0){
+                        scopes.push(x);
+                    }
+                    else if("otmvlw".indexOf(values[x]) >= 0){
+                        scopes.push(x);
+                        break;
+                    }
+                    else {
+                        break;
+                    }
+                    x -= 7;
+                }
+                break;
+            case "k":
+                x = n;
+                x += 8;
                 if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
                     scopes.push(x);
                 }
                 x = n;
-                x -= 7;
+                x -= 8;
                 if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
                     scopes.push(x);
                 }
+                x = n;
+                if(x%8 > 0){
+                    x = n;
+                    x -= 1;
+                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        scopes.push(x);
+                    }
+                    x = n;
+                    x -= 9;
+                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        scopes.push(x);
+                    }
+    
+                    x = n;
+                    x += 7;
+                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        scopes.push(x);
+                    }
+                }
+                x = n;
+                if(x%8 < 7){
+                    x = n;
+                    x += 1;
+                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        scopes.push(x);
+                    }
+                    x = n;
+                    x += 9;
+                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        scopes.push(x);
+                    }
+                    x = n;
+                    x -= 7;
+                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        scopes.push(x);
+                    }
+                }
+                break;
             }
-        }
         if(scopes.length) return scopes;
     }
 
-    var myTurn = true;
+    let myTurn = true;
 
     function check(){
         if(myTurn){
-            var n = Number(this.classList[1].slice(1));
-            var target = values[n];
-
-            var scopes = checkBlack(n,values) || [];
-
-            var x = n;
+            let n = Number(this.classList[1].slice(1));
+            let scopes = checkBlack(n,values) || [];
 
             if(!moveable){
                 if(scopes.length > 0){
                     moveable = true;
                     moveTarget = n;
                     moveScopes = scopes.join(",").split(",");
-                }
-                else {
-
                 }
             }
             else {
@@ -1000,12 +985,12 @@ window.onload = function(){
                     checkArr[n] = checkArr[moveTarget];
                     checkArr[moveTarget] = 0;
 
-                    for(let y = 0; y < 64; y++){
-                        if("prnbkq".indexOf(checkArr[y]) >= 0){
+                    for(let y = 0; y < 64; y++){// Use a for-of loop
+                        if("prnbkq".indexOf(checkArr[y]) >= 0) {
                             let checkScp = checkWhite(y,checkArr) || [];
-                            for(let z = 0; z < checkScp.length; z++){
-                                if(checkArr[checkScp[z]] === 'l'){
-                                    if(!saveKing){
+                            for (let z = 0; z < checkScp.length; z++) {
+                                if (checkArr[checkScp[z]] === 'l') {
+                                    if (!saveKing) {
                                         alert('Save Your King');
                                         saveKing = true;
                                     }
@@ -1062,25 +1047,21 @@ window.onload = function(){
 
             for(let x = 0; x < scopes.length; x++){
                 sqs[scopes[x]].style.background = "#f45";//.classList.add("scope");
-            //    alert(scopes)
             }
         }
     }
-
-
-    let arr = [];
 
     function chooseTurn(){
         let approved = [];
         let actions = [];
         let effects = [];
+        let n;
 
-
-        for(let n = 0; n < 64; n++){
-            if("prnbqk".indexOf(values[n]) >= 0){
+        for(n = 0; n < 64; n++){
+            if("prnbqk".indexOf(values[n].toString()) >= 0){
                 let scopes = checkWhite(n,values) || [];
                 for(let x = 0; x < scopes.length; x++){
-                    let tmp = []//values.join(',').split(',');
+                    let tmp = [];
                     for(let xx = 0; xx < 64; xx++){
                         tmp[xx] = values[xx]
                     }
@@ -1089,25 +1070,21 @@ window.onload = function(){
                     crypto.getRandomValues(randomArray);
                     let action = randomArray[0] % 4;                    
                     //Action value
-                    let actionValue = tmp[scopes[x]];
+                    let actionValue = tmp[scopes[x]].toString();
                     switch (actionValue) {
                         case "l":
-                            let randomBytesl = new Uint8Array(1);
-                            crypto.getRandomValues(randomBytes);
-                            action = 100 + (randomBytesl[0] / 255) * 3;                            
+                            action = 100 + Math.random()*3;                            
                             break;
                         case "w":
-                            action = 50 + Math.random() * 3;
+                            action = 50 + Math.random()*3;                            
                             break;
                         case "v":
                         case "m":
                         case "t":
-                            action = 30 + Math.random() * 3;
+                            action = 30 + Math.random()*3;                            
                             break;
                         case "o":
-                            let randomBytes = new Uint8Array(1);
-                            crypto.getRandomValues(randomBytes);
-                            action = 15 + (randomBytes[0] / 255) * 3;
+                            action = 15 + Math.random()*3;
                             break;
                         default:
                             // Manejar el caso en el que actionValue no coincida con ningún caso
@@ -1118,7 +1095,7 @@ window.onload = function(){
                     tmp[scopes[x]] = tmp[n];
                     tmp[n] = 0;
                     for(let y = 0; y < 64; y++){
-                        if("otmvlw".indexOf(values[y]) >= 0){
+                        if("otmvlw".indexOf(values[y].toString()) >= 0){
                             let tmpScp = checkBlack(y,tmp) || [];
                             for(let z = 0; z < tmpScp.length; z++){
                                 let effectValue = tmp[tmpScp[z]];
