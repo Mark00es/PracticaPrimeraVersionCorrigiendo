@@ -10,11 +10,11 @@ describe('updateSquarecolor', () => {
 
     // Realiza afirmaciones para comprobar si la función funciona como se espera
     for (let n = 0; n < 64; n++) {
-      const expectedColor = Math.floor(n / 8) % 2 === 0
-        ? n % 2 === 0
+      const expectedColor = Math.floor(n / 8) % 2 == 0
+        ? n % 2 == 0
           ? '#9ff'
           : '#5fa'
-        : n % 2 === 1
+        : n % 2 == 1
           ? '#9ff'
           : '#5fa';
 

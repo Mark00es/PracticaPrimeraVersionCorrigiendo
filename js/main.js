@@ -52,10 +52,10 @@ window.onload = function(){
 
     function updateSquarecolor(){
         for(let n = 0; n < 64; n++){
-            if (Math.floor(n / 8) % 2 === 0) {
-                sqs[n].style.background = n % 2 === 0 ? '#9ff' : '#5fa';
+            if (Math.floor(n / 8) % 2 == 0) {
+                sqs[n].style.background = n % 2 == 0 ? '#9ff' : '#5fa';
             } else {
-                sqs[n].style.background = n % 2 === 1 ? '#9ff' : '#5fa';
+                sqs[n].style.background = n % 2 == 1 ? '#9ff' : '#5fa';
             }
         }
     }
@@ -66,6 +66,7 @@ window.onload = function(){
     let moveTarget = "";
     let moveScopes = [];
 
+    
 
     function checkBlack(n,values){
         let target = values[n];
@@ -80,10 +81,10 @@ window.onload = function(){
                 if("prnbkq".indexOf(values[x+1]) >= 0 && x%8 != 7){
                     scopes.push(x+1);
                 }
-                if(x >= 0 && values[x] === 0){
+                if(x >= 0 && values[x] == 0){
                     scopes.push(x);
                     if(x >= 40){
-                        if(x-8 >= 0 && values[x-8] === 0){
+                        if(x-8 >= 0 && values[x-8] == 0){
                             scopes.push(x-8);
                         }
                     }
@@ -93,7 +94,7 @@ window.onload = function(){
                 x = n;
                 x -= 8;
                 while(x >= 0){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("prnbqk".indexOf(values[x]) >= 0){
@@ -108,7 +109,7 @@ window.onload = function(){
                 x = n;
                 x += 8;
                 while(x < 64){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("prnbqk".indexOf(values[x]) >= 0){
@@ -123,7 +124,7 @@ window.onload = function(){
                 x = n;
                 x++;
                 while(x%8 != 0){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("prnbqk".indexOf(values[x]) >= 0){
@@ -138,7 +139,7 @@ window.onload = function(){
                 x = n;
                 x--;
                 while(x%8 != 7){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("prnbqk".indexOf(values[x]) >= 0){
@@ -155,43 +156,43 @@ window.onload = function(){
                 x = n;
                 if(x%8 > 1 && x%8 < 6){
                     x -= 17;
-                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                     x = n;
                     x -= 15;
-                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
     
                     x = n;
                     x -= 10;
-                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                     x = n;
                     x -= 6;
-                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                     x = n;
                     x += 6;
-                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                     x = n;
                     x += 10;
-                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                     x = n;
                     x += 15;
-                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                     x = n;
                     x += 17;
-                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                 }
@@ -200,69 +201,69 @@ window.onload = function(){
                     if(x%8 <= 1){
                         x = n;
                         x -= 15;
-                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                             scopes.push(x);
                         }
                         x = n;
                         x -= 6;
-                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                             scopes.push(x);
                         }
                         x = n;
                         x += 10;
-                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                             scopes.push(x);
                         }
                         x = n;
                         x += 17;
-                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                             scopes.push(x);
                         }
                     }
                     x = n;
-                    if(x%8 === 1){
+                    if(x%8 == 1){
                         x -= 17;
-                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                             scopes.push(x);
                         }
                         x = n;
                         x += 15;
-                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                             scopes.push(x);
                         }
                     }
                     if(x%8 >= 6){
                         x = n;
                         x -= 17;
-                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                             scopes.push(x);
                         }
                         x = n;
                         x -= 10;
-                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                             scopes.push(x);
                         }
                         x = n;
                         x += 6;
-                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                             scopes.push(x);
                         }
                         x = n;
                         x += 15;
-                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                             scopes.push(x);
                         }
                     }
                     x = n;
-                    if(x%8 === 6){
+                    if(x%8 == 6){
                         x = n;
                         x -= 15;
-                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                             scopes.push(x);
                         }
                         x = n;
                         x += 17;
-                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                             scopes.push(x);
                         }
                     }
@@ -272,7 +273,7 @@ window.onload = function(){
                 x = n;
                 x -= 9;
                 while(x >= 0 && x%8 !== 7){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("prnbqk".indexOf(values[x]) >= 0){
@@ -287,7 +288,7 @@ window.onload = function(){
                 x = n;
                 x += 7;
                 while(x < 64 && x%8 !== 7){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("prnbqk".indexOf(values[x]) >= 0){
@@ -302,7 +303,7 @@ window.onload = function(){
                 x = n;
                 x += 9;
                 while(x%8 != 0 && x%8 !== 0){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("prnbqk".indexOf(values[x]) >= 0){
@@ -317,7 +318,7 @@ window.onload = function(){
                 x = n;
                 x -= 7;
                 while(x%8 != 0){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("prnbqk".indexOf(values[x]) >= 0){
@@ -334,7 +335,7 @@ window.onload = function(){
                 x = n;
                 x -= 8;
                 while(x >= 0){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("prnbqk".indexOf(values[x]) >= 0){
@@ -349,7 +350,7 @@ window.onload = function(){
                 x = n;
                 x += 8;
                 while(x < 64){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("prnbqk".indexOf(values[x]) >= 0){
@@ -364,7 +365,7 @@ window.onload = function(){
                 x = n;
                 x++;
                 while(x%8 != 0){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("prnbqk".indexOf(values[x]) >= 0){
@@ -379,7 +380,7 @@ window.onload = function(){
                 x = n;
                 x--;
                 while(x%8 != 7){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("prnbqk".indexOf(values[x]) >= 0){
@@ -394,7 +395,7 @@ window.onload = function(){
                 x = n;
                 x -= 9;
                 while(x >= 0 && x%8 !== 7){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("prnbqk".indexOf(values[x]) >= 0){
@@ -409,7 +410,7 @@ window.onload = function(){
                 x = n;
                 x += 7;
                 while(x < 64 && x%8 !== 7){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("prnbqk".indexOf(values[x]) >= 0){
@@ -424,7 +425,7 @@ window.onload = function(){
                 x = n;
                 x += 9;
                 while(x%8 != 0 && x%8 !== 0){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("prnbqk".indexOf(values[x]) >= 0){
@@ -439,7 +440,7 @@ window.onload = function(){
                 x = n;
                 x -= 7;
                 while(x%8 != 0){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("prnbqk".indexOf(values[x]) >= 0){
@@ -455,30 +456,30 @@ window.onload = function(){
             case "l":
                 x = n;
                 x += 8;
-                if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                     scopes.push(x);
                 }
                 x = n;
                 x -= 8;
-                if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                     scopes.push(x);
                 }
                 x = n;
                 if(x%8 > 0){
                     x = n;
                     x -= 1;
-                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                     x = n;
                     x -= 9;
-                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
     
                     x = n;
                     x += 7;
-                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                 }
@@ -486,17 +487,17 @@ window.onload = function(){
                 if(x%8 < 7){
                     x = n;
                     x += 1;
-                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                     x = n;
                     x += 9;
-                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                     x = n;
                     x -= 7;
-                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("prnbqk".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                 }
@@ -504,13 +505,13 @@ window.onload = function(){
                 if(!ck){
                     cl = false;
                     if(!cr2){
-                        if(values[n+1] === 0 && values[n+2] === 0 && values[n+3] === "t"){
+                        if(values[n+1] == 0 && values[n+2] == 0 && values[n+3] == "t"){
                             scopes.push(x+2);
                             cl = true;
                         }
                     }
                     if(!cr1){
-                        if(values[n-1] === 0 && values[n-2] === 0 && values[n-3] === 0 && values[n-4] === "t"){
+                        if(values[n-1] == 0 && values[n-2] == 0 && values[n-3] == 0 && values[n-4] == "t"){
                             scopes.push(x-2);
                             cl = true;
                         }
@@ -520,8 +521,9 @@ window.onload = function(){
             
         }
         if(scopes.length) return scopes;
-    }
-
+    
+    }        
+      
     function checkWhite(n,values){
         let target = values[n];
         let scopes = [];
@@ -535,10 +537,10 @@ window.onload = function(){
                 if("otmvlw".indexOf(values[x+1]) >= 0 && x%8 != 7){
                     scopes.push(x+1);
                 }
-                if(x < 64 && values[x] === 0){
+                if(x < 64 && values[x] == 0){
                     scopes.push(x);
                     if(x <= 23){
-                        if(x+8 >= 0 && values[x+8] === 0){
+                        if(x+8 >= 0 && values[x+8] == 0){
                             scopes.push(x+8);
                         }
                     }
@@ -548,7 +550,7 @@ window.onload = function(){
                 x = n;
                 x -= 8;
                 while(x >= 0){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("otmvlw".indexOf(values[x]) >= 0){
@@ -563,7 +565,7 @@ window.onload = function(){
                 x = n;
                 x += 8;
                 while(x < 64){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("otmvlw".indexOf(values[x]) >= 0){
@@ -578,7 +580,7 @@ window.onload = function(){
                 x = n;
                 x++;
                 while(x%8 != 0){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("otmvlw".indexOf(values[x]) >= 0){
@@ -593,7 +595,7 @@ window.onload = function(){
                 x = n;
                 x--;
                 while(x%8 != 7){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("otmvlw".indexOf(values[x]) >= 0){
@@ -610,43 +612,43 @@ window.onload = function(){
                 x = n;
                 if(x%8 > 1 && x%8 < 6){
                     x -= 17;
-                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                     x = n;
                     x -= 15;
-                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
     
                     x = n;
                     x -= 10;
-                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                     x = n;
                     x -= 6;
-                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                     x = n;
                     x += 6;
-                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                     x = n;
                     x += 10;
-                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                     x = n;
                     x += 15;
-                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                     x = n;
                     x += 17;
-                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                 }
@@ -655,69 +657,69 @@ window.onload = function(){
                     if(x%8 <= 1){
                         x = n;
                         x -= 15;
-                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                             scopes.push(x);
                         }
                         x = n;
                         x -= 6;
-                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                             scopes.push(x);
                         }
                         x = n;
                         x += 10;
-                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                             scopes.push(x);
                         }
                         x = n;
                         x += 17;
-                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                             scopes.push(x);
                         }
                     }
                     x = n;
-                    if(x%8 === 1){
+                    if(x%8 == 1){
                         x -= 17;
-                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                             scopes.push(x);
                         }
                         x = n;
                         x += 15;
-                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                             scopes.push(x);
                         }
                     }
                     if(x%8 >= 6){
                         x = n;
                         x -= 17;
-                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                             scopes.push(x);
                         }
                         x = n;
                         x -= 10;
-                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                             scopes.push(x);
                         }
                         x = n;
                         x += 6;
-                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                             scopes.push(x);
                         }
                         x = n;
                         x += 15;
-                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                             scopes.push(x);
                         }
                     }
                     x = n;
-                    if(x%8 === 6){
+                    if(x%8 == 6){
                         x = n;
                         x -= 15;
-                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                             scopes.push(x);
                         }
                         x = n;
                         x += 17;
-                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                        if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                             scopes.push(x);
                         }
                     }
@@ -727,7 +729,7 @@ window.onload = function(){
                 x = n;
                 x -= 9;
                 while(x >= 0 && x%8 !== 7){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("otmvlw".indexOf(values[x]) >= 0){
@@ -742,7 +744,7 @@ window.onload = function(){
                 x = n;
                 x += 7;
                 while(x < 64 && x%8 !== 7){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("otmvlw".indexOf(values[x]) >= 0){
@@ -757,7 +759,7 @@ window.onload = function(){
                 x = n;
                 x += 9;
                 while(x%8 != 0 && x%8 !== 0){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("otmvlw".indexOf(values[x]) >= 0){
@@ -772,7 +774,7 @@ window.onload = function(){
                 x = n;
                 x -= 7;
                 while(x%8 != 0){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("otmvlw".indexOf(values[x]) >= 0){
@@ -789,7 +791,7 @@ window.onload = function(){
                 x = n;
                 x -= 8;
                 while(x >= 0){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("otmvlw".indexOf(values[x]) >= 0){
@@ -804,7 +806,7 @@ window.onload = function(){
                 x = n;
                 x += 8;
                 while(x < 64){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("otmvlw".indexOf(values[x]) >= 0){
@@ -819,7 +821,7 @@ window.onload = function(){
                 x = n;
                 x++;
                 while(x%8 != 0){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("otmvlw".indexOf(values[x]) >= 0){
@@ -834,7 +836,7 @@ window.onload = function(){
                 x = n;
                 x--;
                 while(x%8 != 7){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("otmvlw".indexOf(values[x]) >= 0){
@@ -849,7 +851,7 @@ window.onload = function(){
                 x = n;
                 x -= 9;
                 while(x >= 0 && x%8 !== 7){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("otmvlw".indexOf(values[x]) >= 0){
@@ -864,7 +866,7 @@ window.onload = function(){
                 x = n;
                 x += 7;
                 while(x < 64 && x%8 !== 7){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("otmvlw".indexOf(values[x]) >= 0){
@@ -879,7 +881,7 @@ window.onload = function(){
                 x = n;
                 x += 9;
                 while(x%8 != 0 && x%8 !== 0){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("otmvlw".indexOf(values[x]) >= 0){
@@ -894,7 +896,7 @@ window.onload = function(){
                 x = n;
                 x -= 7;
                 while(x%8 != 0){
-                    if(values[x] === 0){
+                    if(values[x] == 0){
                         scopes.push(x);
                     }
                     else if("otmvlw".indexOf(values[x]) >= 0){
@@ -910,30 +912,30 @@ window.onload = function(){
             case "k":
                 x = n;
                 x += 8;
-                if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                     scopes.push(x);
                 }
                 x = n;
                 x -= 8;
-                if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                     scopes.push(x);
                 }
                 x = n;
                 if(x%8 > 0){
                     x = n;
                     x -= 1;
-                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                     x = n;
                     x -= 9;
-                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
     
                     x = n;
                     x += 7;
-                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                 }
@@ -941,17 +943,17 @@ window.onload = function(){
                 if(x%8 < 7){
                     x = n;
                     x += 1;
-                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                     x = n;
                     x += 9;
-                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                     x = n;
                     x -= 7;
-                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] === 0) && x < 64 && x >= 0){
+                    if(("otmvlw".indexOf(values[x]) >= 0 || values[x] == 0) && x < 64 && x >= 0){
                         scopes.push(x);
                     }
                 }
@@ -989,7 +991,7 @@ window.onload = function(){
                         if("prnbkq".indexOf(checkArr[y]) >= 0) {
                             let checkScp = checkWhite(y,checkArr) || [];
                             for (let z = 0; z < checkScp.length; z++) {
-                                if (checkArr[checkScp[z]] === 'l') {
+                                if (checkArr[checkScp[z]] == 'l') {
                                     if (!saveKing) {
                                         alert('Save Your King');
                                         saveKing = true;
@@ -1003,25 +1005,25 @@ window.onload = function(){
                         values[n] = values[moveTarget];
                         values[moveTarget] = 0;
                         if(cl){
-                            if(n === 62 && moveTarget === 60){
+                            if(n == 62 && moveTarget == 60){
                                 values[63] = 0;
                                 values[61] = "t";
                             }
-                            else if(n === 58 && moveTarget === 60){
+                            else if(n == 58 && moveTarget == 60){
                                 values[59] = "t";
                                 values[56] = 0;
                             }
                         }
-                        if(moveTarget === 60){
+                        if(moveTarget == 60){
                             ck = true;
                         }
-                        else if(moveTarget === 63){
+                        else if(moveTarget == 63){
                             cr2 = true;
                         }
-                        else if(moveTarget === 56){
+                        else if(moveTarget == 56){
                             cr1 = true;
                         }
-                        if(values[n] === "o" && n < 8){
+                        if(values[n] == "o" && n < 8){
                             values[n] = "w";
                         }
                         moveable = false;
@@ -1040,7 +1042,7 @@ window.onload = function(){
 
             for(let x = 0; x < 64; x++){
                 sqs[x].innerHTML = fonts[values[x]];
-                if(values[x] === 0){
+                if(values[x] == 0){
                     sqs[x].innerHTML = "";
                 }
             }
@@ -1158,7 +1160,7 @@ window.onload = function(){
         let bestMove = "";
 
         for(let n = 0; n < effects.length; n++){
-            if(effects[n] === bestEffect){
+            if(effects[n] == bestEffect){
                 tmpA.push(actions[n]);
                 tmpB.push(approved[n]);
                 tmpC.push(effects[n]);
@@ -1172,7 +1174,7 @@ window.onload = function(){
         if(bestMove){
             values[Number(bestMove.split("-")[1])] = values[Number(bestMove.split("-")[0])];
             values[Number(bestMove.split("-")[0])] = 0;
-            if(values[Number(bestMove.split("-")[1])] === "p" && Number(bestMove.split("-")[1]) >= 56){
+            if(values[Number(bestMove.split("-")[1])] == "p" && Number(bestMove.split("-")[1]) >= 56){
                 values[Number(bestMove.split("-")[1])] = "q";
             }
 
@@ -1182,7 +1184,7 @@ window.onload = function(){
             for(let x = 0; x < 64; x++){
                 //sqs[x].style.background = "#afa"//classList.add("scope");
                 sqs[x].innerHTML = fonts[values[x]];
-                if(values[x] === 0){
+                if(values[x] == 0){
                     sqs[x].innerHTML = "";
                 }
             }
