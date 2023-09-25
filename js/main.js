@@ -57,15 +57,14 @@ window.onload = function(){
             } else {
                 sqs[n].style.background = n % 2 === 1 ? '#9ff' : '#5fa';
             }
-        }
-    }
+        }        
+    }            
 
     updateSquarecolor();
 
     let moveable = false;
     let moveTarget = "";
     let moveScopes = [];
-
 
     function checkBlack(n,values){
         let target = values[n];
@@ -519,8 +518,9 @@ window.onload = function(){
                 break;
             
         }
-        if(scopes.length) return scopes;
+        if(scopes.length) return scopes;    
     }
+    module.exports = { checkBlack };
 
     function checkWhite(n,values){
         let target = values[n];
@@ -959,7 +959,7 @@ window.onload = function(){
             }
         if(scopes.length) return scopes;
     }
-
+   
     let myTurn = true;
 
     function check(){
