@@ -976,8 +976,7 @@ window.onload = function(){
                     moveScopes = scopes.join(",").split(",");
                 }
             }
-            else {
-                if(moveScopes.indexOf(String(n)) >= 0){
+            else if(moveScopes.indexOf(String(n)) >= 0){
                     let checkArr = [];
                     let saveKing = false;
                     for(let z = 0; z < 64; z++){
@@ -1031,11 +1030,11 @@ window.onload = function(){
                         myTurn = false;
                         setTimeout(chooseTurn,1000);
                     }
-                }
-                else {
-                    moveScopes = [];
-                    moveable = false;
-                }
+
+            }
+            else {
+            moveScopes = [];
+            moveable = false;
             }
 
             updateSquarecolor();
