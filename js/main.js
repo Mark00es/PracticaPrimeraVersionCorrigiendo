@@ -1069,23 +1069,24 @@ window.onload = function(){
                     let effect = 0;
                     let randomArray = new Uint32Array(1);
                     crypto.getRandomValues(randomArray);
-                    let action = randomArray[0] % 4;                    
+                    let action = randomArray[0] % 4; 
+                    let rand=Math.random();               
                     //Action value
                     let actionValue = tmp[scopes[x]].toString();
                     switch (actionValue) {
                         case "l":
-                            action = 100 + Math.random()*3;                            
+                            action = 100 + rand*3;                            
                             break;
                         case "w":
-                            action = 50 + Math.random()*3;                            
+                            action = 50 + rand*3;                            
                             break;
                         case "v":
                         case "m":
                         case "t":
-                            action = 30 + Math.random()*3;                            
+                            action = 30 +rand*3;                            
                             break;
                         case "o":
-                            action = 15 + Math.random()*3;
+                            action = 15 + rand*3;
                             break;
                         default:
                             // Manejar el caso en el que actionValue no coincida con ningún caso
