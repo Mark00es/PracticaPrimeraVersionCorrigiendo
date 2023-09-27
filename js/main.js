@@ -994,8 +994,8 @@ window.onload = function(){
                       for (let y of range(0, 64)) {
                         if("prnbkq".indexOf(checkArr[y].toString()) >= 0) {
                             let checkScp = checkWhite(y,checkArr) || [];
-                            for (let z = 0; z < checkScp.length; z++) {
-                                if (checkArr[checkScp[z]] == 'l') {
+                            for (let piece of checkScp) {
+                                if (checkArr[piece] == 'l') {
                                     if (!saveKing) {
                                         alert('Save Your King');
                                         saveKing = true;
