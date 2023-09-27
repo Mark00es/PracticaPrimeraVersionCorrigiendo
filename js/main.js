@@ -988,7 +988,7 @@ window.onload = function(){
                     dataObj.moveTarget = 0;
 
                     for(let y = 0; y < 64; y++){// Use a for-of loop
-                        if("prnbkq".indexOf(checkArr[y]) >= 0) {
+                        if("prnbkq".indexOf(checkArr[y].toString()) >= 0) {
                             let checkScp = checkWhite(y,checkArr) || [];
                             for (let z = 0; z < checkScp.length; z++) {
                                 if (checkArr[checkScp[z]] == 'l') {
