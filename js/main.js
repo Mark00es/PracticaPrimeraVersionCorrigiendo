@@ -1050,10 +1050,11 @@ window.onload = function(){
                     sqs[x].innerHTML = "";
                 }
             }
-
-            for(let x = 0; x < scopes.length; x++){
-                sqs[scopes[x]].style.background = "#f45";//.classList.add("scope");
-            }
+            
+            for (const key of Object.keys(scopes)) {
+                sqs[scopes[key]].style.background = "#f45";
+              }
+              
         }
     }
 
