@@ -1159,35 +1159,16 @@ window.onload = function(){
         }
 
         let tmpA = [];
-        let tmpB = [];
-        let tmpC = [];
+        let tmpB = [];        
         let bestMove = "";
-
-        const copiedActions = [...actions];
-        const copiedApproved = [...approved];
-        const copiedEffects = [...effects];
-
-        for (let n = 0; n < copiedEffects.length; n++) {
-            if (copiedEffects[n] == bestEffect) {
-                tmpA.push(copiedActions[n]);
-                tmpB.push(copiedApproved[n]);
-                tmpC.push(copiedEffects[n]);
+        
+        for(let n = 0; n < effects.length; n++){
+            if(effects[n] == bestEffect){
+                tmpA.push(actions[n]);
+                tmpB.push(approved[n]);
             }
         }
-
-        // Encuentra el índice del máximo en tmpA sin afectar a copiedActions
-        const maxA = Math.max.apply(null, tmpA);
-        const maxAIndex = tmpA.indexOf(maxA);
-
-        bestMove = tmpB[maxAIndex];
-        // for(let n = 0; n < effects.length; n++){
-        //     if(effects[n] == bestEffect){
-        //         tmpA.push(actions[n]);
-        //         tmpB.push(approved[n]);
-        //         tmpC.push(effects[n]);
-        //     }
-        // }
-        // bestMove = tmpB[tmpA.indexOf(Math.max.apply(null,tmpA))];
+        bestMove = tmpB[tmpA.indexOf(Math.max.apply(null,tmpA))];
     
         if(bestMove){
             values[Number(bestMove.split("-")[1])] = values[Number(bestMove.split("-")[0])];
